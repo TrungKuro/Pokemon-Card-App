@@ -10,21 +10,19 @@ import '../providers/pokemon_provider.dart';
 import '../providers/selected_pokemon_item_provider.dart';
 import 'custom_elevated_button_widget.dart';
 
+/* ------------------------------------------------------------------------- */
+
 class SearchPokemonWidget extends StatelessWidget {
   const SearchPokemonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    ScaffoldMessengerState scaffoldMessengerState =
-        ScaffoldMessenger.of(context);
-    SelectedPokemonItemProvider selectedPokemonItem =
-        Provider.of<SelectedPokemonItemProvider>(context);
+    /* ------------------------------- Object ------------------------------ */
+    ScaffoldMessengerState scaffoldMessengerState = ScaffoldMessenger.of(context);
+    SelectedPokemonItemProvider selectedPokemonItem = Provider.of<SelectedPokemonItemProvider>(context);
+    /* --------------------------------------------------------------------- */
     return Padding(
-      padding: const EdgeInsets.only(
-        left: 20.0,
-        right: 20.0,
-        bottom: 40.0,
-      ),
+      padding: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 40.0),
       child: Column(
         children: [
           Wrap(
@@ -39,9 +37,7 @@ class SearchPokemonWidget extends StatelessWidget {
                 },
                 child: const Text(
                   'Random',
-                  style: TextStyle(
-                    fontSize: 22.0,
-                  ),
+                  style: TextStyle(fontSize: 22.0),
                 ),
               ),
               ElevatedButton(
@@ -50,11 +46,8 @@ class SearchPokemonWidget extends StatelessWidget {
                   builder: (BuildContext context) => Container(
                     height: 216,
                     padding: const EdgeInsets.only(top: 6.0),
-                    margin: EdgeInsets.only(
-                      bottom: MediaQuery.of(context).viewInsets.bottom,
-                    ),
-                    color:
-                        CupertinoColors.systemBackground.resolveFrom(context),
+                    margin: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                    color: CupertinoColors.systemBackground.resolveFrom(context),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -84,9 +77,7 @@ class SearchPokemonWidget extends StatelessWidget {
                                 maxPokemonId,
                                 (int index) {
                                   return Center(
-                                    child: Text(
-                                      (index + 1).toString(),
-                                    ),
+                                    child: Text((index + 1).toString()),
                                   );
                                 },
                               ),
@@ -99,9 +90,7 @@ class SearchPokemonWidget extends StatelessWidget {
                 ),
                 child: Text(
                   '# ${selectedPokemonItem.number + 1}',
-                  style: const TextStyle(
-                    fontSize: 22.0,
-                  ),
+                  style: const TextStyle(fontSize: 22.0),
                 ),
               ),
             ],
@@ -111,12 +100,10 @@ class SearchPokemonWidget extends StatelessWidget {
             textColor: Colors.white,
             iconColor: Colors.white,
             callback: () async {
-              Provider.of<PokemonProvider>(context, listen: false)
-                  .eitherFailureOrPokemon(
+              Provider.of<PokemonProvider>(context, listen: false).eitherFailureOrPokemon(
                 value: (selectedPokemonItem.number + 1).toString(),
               );
-              if (await NetworkInfoImpl(DataConnectionChecker()).isConnected ==
-                  false) {
+              if (await NetworkInfoImpl(DataConnectionChecker()).isConnected == false) {
                 scaffoldMessengerState.clearSnackBars();
                 scaffoldMessengerState.showSnackBar(
                   const SnackBar(

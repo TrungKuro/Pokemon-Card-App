@@ -12,22 +12,25 @@ import '../../data/datasources/pokemon_local_data_source.dart';
 import '../../data/datasources/pokemon_remote_data_source.dart';
 import '../../data/repositories/pokemon_repository_impl.dart';
 
+/* ------------------------------------------------------------------------- */
+
 class PokemonProvider extends ChangeNotifier {
+  // Object (STATE)
   PokemonEntity? pokemon;
   Failure? failure;
 
+  // Hàm xây dựng
   PokemonProvider({
     this.pokemon,
     this.failure,
   });
 
-  void eitherFailureOrPokemon({
-    required String value,
-  }) async {
+  /* ----------------------------------------------------------------------- */
+  
+  void eitherFailureOrPokemon({required String value}) async {
     PokemonRepositoryImpl repository = PokemonRepositoryImpl(
       remoteDataSource: PokemonRemoteDataSourceImpl(dio: Dio()),
-      localDataSource: PokemonLocalDataSourceImpl(
-          sharedPreferences: await SharedPreferences.getInstance()),
+      localDataSource: PokemonLocalDataSourceImpl(sharedPreferences: await SharedPreferences.getInstance()),
       networkInfo: NetworkInfoImpl(DataConnectionChecker()),
     );
 

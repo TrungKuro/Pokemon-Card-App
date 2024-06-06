@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../widgets/data_widget.dart';
+
+/* ------------------------------------------------------------------------- */
 
 class DataPage extends StatelessWidget {
   const DataPage({super.key});

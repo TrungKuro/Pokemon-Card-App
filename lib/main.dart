@@ -5,9 +5,13 @@ import 'features/pokemon/presentation/providers/selected_pokemon_item_provider.d
 import 'features/skeleton/providers/selected_page_provider.dart';
 import 'features/skeleton/skeleton.dart';
 
+/* ------------------------------------------------------------------------- */
+
 void main() {
   runApp(const MyApp());
 }
+
+/* ------------------------------------------------------------------------- */
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -48,6 +52,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
+/* ------------------------------------------------------------------------- */
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -58,8 +64,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   void initState() {
+    // Truy cập API Pokemon dựa theo số Item đang chọn
     SelectedPokemonItemProvider selectedPokemonItem = Provider.of<SelectedPokemonItemProvider>(context, listen: false);
-
     Provider.of<PokemonProvider>(context, listen: false).eitherFailureOrPokemon(
       value: (selectedPokemonItem.number + 1).toString(),
     );

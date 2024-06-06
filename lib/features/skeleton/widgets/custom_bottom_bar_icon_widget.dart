@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/* ------------------------------------------------------------------------- */
+
 class CustomBottomBarIconWidget extends StatelessWidget {
   const CustomBottomBarIconWidget({
     super.key,

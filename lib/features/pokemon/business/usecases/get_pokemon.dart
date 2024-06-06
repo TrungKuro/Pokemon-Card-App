@@ -4,10 +4,16 @@ import '../../../../core/params/params.dart';
 import '../entities/pokemon_entity.dart';
 import '../repositories/pokemon_repository.dart';
 
+/* ------------------------------------------------------------------------- */
+
 class GetPokemon {
+  // Object
   final PokemonRepository repository;
 
+  // Hàm xây dựng
   GetPokemon(this.repository);
+
+  /* ----------------------------------------------------------------------- */
 
   Future<Either<Failure, PokemonEntity>> call({required PokemonParams params}) async {
     return await repository.getPokemon(params: params);

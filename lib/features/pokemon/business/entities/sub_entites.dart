@@ -1,3 +1,19 @@
+/* ------------------------------------------------------------------------- */
+
+//! https://pokeapi.co/api/v2/pokemon/{id or name}/
+//
+//  - [id]
+//  - [name]
+//  - [sprites]
+//    - [other]
+//      - [official-artwork]
+//        - [front_default]
+//        - [front_shiny]
+//  - [types]
+//    - [type]
+
+/* ------------------------------------------------------------------------- */
+
 //! Sprites
 
 class SpritesEntity {
@@ -23,6 +39,8 @@ class OfficialArtworkEntity {
   });
 }
 
+/* ------------------------------------------------------------------------- */
+
 //! Types
 
 class TypesEntity {
@@ -38,3 +56,5 @@ class TypeEntity {
     required this.name,
   });
 }
+
+/* ------------------------------------------------------------------------- */

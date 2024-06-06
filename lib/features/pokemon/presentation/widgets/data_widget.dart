@@ -5,45 +5,58 @@ import '../../../../../core/errors/failure.dart';
 import '../../business/entities/pokemon_entity.dart';
 import '../providers/pokemon_provider.dart';
 
+/* ------------------------------------------------------------------------- */
+
 class DataWidget extends StatelessWidget {
   const DataWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    /* ------------------------------- Object ------------------------------ */
     PokemonEntity? pokemon = Provider.of<PokemonProvider>(context).pokemon;
     Failure? failure = Provider.of<PokemonProvider>(context).failure;
     late Widget widget;
+    /* ------------------------- Server có phản hồi ------------------------ */
     if (pokemon != null) {
       widget = SingleChildScrollView(
         child: Column(
           children: [
+            /* ------------------------------------------------------------- */
             ListTile(
               leading: const Text('API'),
-              title: Text('https://pokeapi.co/api/v2/pokemon/${pokemon.id}'),
+              title: Text('https://pokeapi.co/api/v2/pokemon/${pokemon.id}'), //!
               tileColor: Colors.orange,
             ),
+            /* ------------------------------------------------------------- */
             ListTile(
               title: Text(kName),
               subtitle: Text(pokemon.name),
             ),
+            /* ------------------------------------------------------------- */
             const Divider(),
+            /* ------------------------------------------------------------- */
             ListTile(
               title: Text(kId),
               subtitle: Text(pokemon.id.toString()),
             ),
+            /* ------------------------------------------------------------- */
             const Divider(),
+            /* ------------------------------------------------------------- */
             ListTile(
               leading: const Text('{ }'),
               title: Text(kSprites),
             ),
+            /* ------------------------------------------------------------- */
             Padding(
               padding: const EdgeInsets.only(left: 10.0),
               child: Column(
                 children: [
+                  /* ------------------------------------------------------- */
                   ListTile(
                     leading: const Text('{ }'),
                     title: Text(kOther),
                   ),
+                  /* ------------------------------------------------------- */
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0),
                     child: Column(
@@ -56,14 +69,17 @@ class DataWidget extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 10.0),
                           child: Column(
                             children: [
+                              /* ------------------------------------------- */
                               ListTile(
                                 title: Text(kFrontDefault),
                                 subtitle: SelectableText(pokemon.sprites.other.officialArtwork.frontDefault),
                               ),
+                              /* ------------------------------------------- */
                               ListTile(
                                 title: Text(kFrontShiny),
                                 subtitle: SelectableText(pokemon.sprites.other.officialArtwork.frontShiny),
                               ),
+                              /* ------------------------------------------- */
                             ],
                           ),
                         ),
@@ -73,11 +89,14 @@ class DataWidget extends StatelessWidget {
                 ],
               ),
             ),
+            /* ------------------------------------------------------------- */
             const Divider(),
+            /* ------------------------------------------------------------- */
             ListTile(
               leading: const Text('[ ]'),
               title: Text(kTypes),
             ),
+            /* ------------------------------------------------------------- */
             Padding(
               padding: const EdgeInsets.only(left: 10.0),
               child: Column(
@@ -85,10 +104,12 @@ class DataWidget extends StatelessWidget {
                   pokemon.types.length,
                   (index) => Column(
                     children: [
+                      /* --------------------------------------------------- */
                       ListTile(
                         leading: const Text('{ }'),
                         title: Text(kType),
                       ),
+                      /* --------------------------------------------------- */
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0),
                         child: ListTile(
@@ -96,23 +117,30 @@ class DataWidget extends StatelessWidget {
                           subtitle: Text(pokemon.types.elementAt(index).type.name),
                         ),
                       ),
+                      /* --------------------------------------------------- */
                     ],
                   ),
                 ),
               ),
             ),
+            /* ------------------------------------------------------------- */
           ],
         ),
       );
-    } else if (failure != null) {
+    }
+    /* ------------------------- Server ko phản hồi ------------------------ */
+    else if (failure != null) {
       widget = Center(
         child: Text(failure.errorMessage),
       );
-    } else {
+    }
+    /* -------------------------- Server đang tải -------------------------- */
+    else {
       widget = const Center(
         child: CircularProgressIndicator(),
       );
     }
+    /* --------------------------------------------------------------------- */
     return widget;
   }
 }

@@ -5,10 +5,14 @@ import 'package:provider/provider.dart';
 import 'widgets/custom_bottom_bar_widget.dart';
 import 'providers/selected_page_provider.dart';
 
+/* ------------------------------------------------------------------------- */
+
 List<Widget> pages = const [
   PokemonPage(),
   DataPage(),
 ];
+
+/* ------------------------------------------------------------------------- */
 
 class Skeleton extends StatelessWidget {
   const Skeleton({super.key});
@@ -16,6 +20,7 @@ class Skeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int selectedPage = Provider.of<SelectedPageProvider>(context).selectedPage;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

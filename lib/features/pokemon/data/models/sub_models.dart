@@ -1,69 +1,58 @@
 import '../../../../../core/constants/constants.dart';
 import '../../business/entities/sub_entites.dart';
 
+/* ------------------------------------------------------------------------- */
+
 //! Sprites
+
 class SpritesModel extends SpritesEntity {
-  const SpritesModel({
-    required OtherModel other,
-  }) : super(other: other);
-
-  static SpritesModel fromJson(Map<String, dynamic> json) {
-    return SpritesModel(
-      other: OtherModel.fromJson(json[kOther]),
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      kOther: other,
-    };
-  }
+  /* ----------------------------------------------------------------------- */
+  const SpritesModel({required OtherModel other}) : super(other: other);
+  /* ----------------------------------------------------------------------- */
+  static SpritesModel fromJson(Map<String, dynamic> json) => SpritesModel(other: OtherModel.fromJson(json[kOther]));
+  /* ----------------------------------------------------------------------- */
+  Map<String, dynamic> toJson() => {kOther: other};
+  /* ----------------------------------------------------------------------- */
 }
 
 class OtherModel extends OtherEntity {
-  const OtherModel({
-    required OfficialArtworkModel officialArtwork,
-  }) : super(officialArtwork: officialArtwork);
-
-  static OtherModel fromJson(Map<String, dynamic> json) {
-    return OtherModel(
-      officialArtwork: OfficialArtworkModel.fromJson(json[kOfficialArtwork]),
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      kOfficialArtwork: officialArtwork,
-    };
-  }
+  /* ----------------------------------------------------------------------- */
+  const OtherModel({required OfficialArtworkModel officialArtwork}) : super(officialArtwork: officialArtwork);
+  /* ----------------------------------------------------------------------- */
+  static OtherModel fromJson(Map<String, dynamic> json) =>
+      OtherModel(officialArtwork: OfficialArtworkModel.fromJson(json[kOfficialArtwork]));
+  /* ----------------------------------------------------------------------- */
+  Map<String, dynamic> toJson() => {kOfficialArtwork: officialArtwork};
+  /* ----------------------------------------------------------------------- */
 }
 
 class OfficialArtworkModel extends OfficialArtworkEntity {
+  /* ----------------------------------------------------------------------- */
   const OfficialArtworkModel({
     required super.frontDefault,
     required super.frontShiny,
   });
-
-  static OfficialArtworkModel fromJson(Map<String, dynamic> json) {
-    return OfficialArtworkModel(
-      frontDefault: json[kFrontDefault],
-      frontShiny: json[kFrontShiny],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      kFrontDefault: frontDefault,
-      kFrontShiny: frontShiny,
-    };
-  }
+  /* ----------------------------------------------------------------------- */
+  static OfficialArtworkModel fromJson(Map<String, dynamic> json) => OfficialArtworkModel(
+        frontDefault: json[kFrontDefault],
+        frontShiny: json[kFrontShiny],
+      );
+  /* ----------------------------------------------------------------------- */
+  Map<String, dynamic> toJson() => {
+        kFrontDefault: frontDefault,
+        kFrontShiny: frontShiny,
+      };
+  /* ----------------------------------------------------------------------- */
 }
 
+/* ------------------------------------------------------------------------- */
+
 //! Types
+
 class TypesModel extends TypesEntity {
-  const TypesModel({
-    required TypeModel type,
-  }) : super(type: type);
+  /* ----------------------------------------------------------------------- */
+  const TypesModel({required TypeModel type}) : super(type: type);
+  /* ----------------------------------------------------------------------- */
 
   static List<TypesModel> fromJson(List<dynamic> jsonList) {
     List<TypesModel> returnedList = [];
@@ -77,28 +66,16 @@ class TypesModel extends TypesEntity {
     return returnedList;
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      kType: type,
-    };
-  }
+  /* ----------------------------------------------------------------------- */
+  Map<String, dynamic> toJson() => {kType: type};
+  /* ----------------------------------------------------------------------- */
 }
 
 class TypeModel extends TypeEntity {
-  const TypeModel({
-    required super.name,
-  });
-
-  static TypeModel fromJson(Map<String, dynamic> json) {
-    return TypeModel(
-      name: json[kName],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      kName: name,
-    };
-  }
+  const TypeModel({required super.name});
+  /* ----------------------------------------------------------------------- */
+  static TypeModel fromJson(Map<String, dynamic> json) => TypeModel(name: json[kName]);
+  /* ----------------------------------------------------------------------- */
+  Map<String, dynamic> toJson() => {kName: name};
+  /* ----------------------------------------------------------------------- */
 }
-

@@ -5,14 +5,18 @@ import 'pokemon_image_widget.dart';
 import '../../business/entities/pokemon_entity.dart';
 import '../providers/pokemon_provider.dart';
 
+/* ------------------------------------------------------------------------- */
+
 class PokemonWidget extends StatelessWidget {
   const PokemonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    /* ------------------------------- Object ------------------------------ */
     PokemonEntity? pokemon = Provider.of<PokemonProvider>(context).pokemon;
     Failure? failure = Provider.of<PokemonProvider>(context).failure;
     late Widget widget;
+    /* ------------------------- Server có phản hồi ------------------------ */
     if (pokemon != null) {
       widget = PokemonImageWidget(
         child: Column(
@@ -29,13 +33,13 @@ class PokemonWidget extends StatelessWidget {
                       style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w900,
+                        fontSize: 50,
                         shadows: <Shadow>[
                           Shadow(
                             blurRadius: 20.0,
                             color: Colors.black45,
                           ),
                         ],
-                        fontSize: 50,
                       ),
                     ),
                   ),
@@ -65,7 +69,9 @@ class PokemonWidget extends StatelessWidget {
           ],
         ),
       );
-    } else if (failure != null) {
+    }
+    /* ----------------------- Server ko có phản hồi ----------------------- */
+    else if (failure != null) {
       widget = Expanded(
         child: Center(
           child: Text(
@@ -74,7 +80,9 @@ class PokemonWidget extends StatelessWidget {
           ),
         ),
       );
-    } else {
+    }
+    /* -------------------------- Server đang tải -------------------------- */
+    else {
       widget = const Expanded(
         child: Center(
           child: CircularProgressIndicator(
@@ -84,6 +92,7 @@ class PokemonWidget extends StatelessWidget {
         ),
       );
     }
+    /* --------------------------------------------------------------------- */
     return widget;
   }
 }
