@@ -28,6 +28,10 @@ String kFrontShiny = 'front_shiny';
 String kTypes = 'types';
 String kType = 'type';
 
+int maxPokemonId = 1008;
+
 /* ------------------------------------------------------------------------- */
 
-int maxPokemonId = 1008;
+String kPath = 'path';
+
+bool isShiny = true;

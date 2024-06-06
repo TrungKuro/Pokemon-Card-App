@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokemon_card/features/pokemon_image/presentation/providers/pokemon_image_provider.dart';
 import 'package:provider/provider.dart';
 import 'features/pokemon/presentation/providers/pokemon_provider.dart';
 import 'features/pokemon/presentation/providers/selected_pokemon_item_provider.dart';
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => SelectedPokemonItemProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => PokemonImageProvider(),
         ),
       ],
       child: MaterialApp(
@@ -66,8 +70,11 @@ class _HomeState extends State<Home> {
   void initState() {
     // Truy cập API Pokemon dựa theo số Item đang chọn
     SelectedPokemonItemProvider selectedPokemonItem = Provider.of<SelectedPokemonItemProvider>(context, listen: false);
+    PokemonImageProvider pokemonImageProvider = Provider.of<PokemonImageProvider>(context, listen: false); //!
+    //
     Provider.of<PokemonProvider>(context, listen: false).eitherFailureOrPokemon(
       value: (selectedPokemonItem.number + 1).toString(),
+      pokemonImageProvider: pokemonImageProvider, //!
     );
     super.initState();
   }
