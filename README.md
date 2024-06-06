@@ -1,10 +1,48 @@
 # Pokemon-Card-App
 
-> ...
+> Các tính năng:
+> - `[skeleton]` - quản lý các trang và nội dung hiển thị của chúng.
+> - `[pokemon]` - lấy data **(Pokemon)** dạng Json từ `API` trang https://pokeapi.co/.
 
 # Nguồn tham khảo:
 
 > [Flutter Clean Architecture - Full Course](https://www.youtube.com/watch?v=SmJB8cy8emU).
+>
+> Dự án sử dụng kiến trúc `"Clean Architecture"` theo cách tiếp cận *"tính năng"* trước *"lớp"*.
+>
+> Tức cấu trúc thư mục được phân cấp theo:
+>
+> <pre>
+> lib
+> |
+> |_ core
+> |
+> |_ features
+> |  |
+> |  |_ feature_1
+> |  |  |
+> |  |  |_ presentation
+> |  |  |_ business
+> |  |  |_ data
+> |  |
+> |  |_ ...
+> |
+> |_ main.dart
+> </pre>
+>
+> ---
+>
+> Sơ đồ kiến trúc: chi tiết về *"tính năng pokemon"* (thư mục `[features] -> [pokemon]`).
+>
+> <img src=".\assets\images\My Clean Architecture (1).jpg" width="100%">
+>
+> Sơ đồ kiến trúc: theo góc nhìn 3 lớp `[presentation] - [business] - [data]` trong thư mục tính năng `[pokemon]`
+>
+> <img src=".\assets\images\My Clean Architecture (2).jpg" width="100%">
+>
+> Sơ đồ kiến trúc: dạng tổng quát.
+>
+> <img src=".\assets\images\My Clean Architecture (3).jpg" width="100%">
 
 ## Các vấn đề:
 
@@ -107,3 +145,80 @@
 >
 > - Thử run app lại nữa! Tuy `XCode` đã build thành công, nhưng build `iOS app` thất bại.
 > - Với thông báo yêu cầu dùng Platform `iOS 17.5` thay cho `iOS 17.4` hiện tại của `XCode`. App đã run thành công!
+
+## Các vấn đề:
+
+> Thư mục gốc của dự án Flutter có tên `[Pokemon-Card-App]` gọi tắt là thư mục `[A]`.
+> - Có kho Git quản lý với URL: https://github.com/TrungKuro/Pokemon-Card-App.git
+>
+> Trong thư mục `[Pokemon-Card-App]` có thư mục con tên `[flutter_mapp_clean_architecture]` gọi tắt là thư mục `[B]`.
+> - Cũng có kho Git quản lý với URL: https://github.com/fluttermapp/flutter_mapp_clean_architecture.git
+>
+> ---
+>
+> Thư mục `[B]` có được khi trong thư mục `[A]` thực hiện lệnh [git clone].
+>
+> <u>Nhu cầu</u>: làm cách nào để hợp nhất 2 kho Git này thành 1. Tức hợp nhất kho Git của thư mục `[B]` vào cho thư mục `[A]`.
+>
+> ---
+>
+> <u>Bước 1</u>: Thêm thư mục `[B]` như một <u>remote repository</u> trong thư mục `[A]`.
+>
+> 1. Chuyển đến thư mục A:
+>
+>         cd /path/to/A
+>
+> 2. Thêm thư mục B như một remote repository và đặt tên là `B_remote`:
+>
+>         git remote add B_remote ./B
+>
+> <u>Bước 2</u>: Fetch (tải về) các thay đổi từ thư mục `[B]`.
+>
+> 3. Fetch các thay đổi từ `B_remote`:
+>
+>         git fetch B_remote
+>
+> <u>Bước 3</u>: Tạo một nhánh mới để hợp nhất các thay đổi từ thư mục `[B]`.
+>
+> 4. Tạo nhánh mới trong kho Git của `[A]` đặt tên là `merge-B` và chuyển sang nhánh mới này để thực hiện việc hợp nhất:
+>
+>         git checkout -b merge-B
+>
+> <u>Bước 4</u>: Hợp nhất các thay đổi từ nhánh chính của thư mục `[B]` vào nhánh mới của thư mục `[A]`.
+>
+> 5. Hợp nhất nhánh chính (`main` hoặc `master`) của `B_remote` vào nhánh `merge-B` trong `[A]`:
+>
+>         git merge B_remote/main --allow-unrelated-histories
+>
+> <u>Lưu ý</u>:
+> - Sử dụng `--allow-unrelated-histories` vì 2 kho có lịch sử commit khác nhau.
+> - Dùng lệnh `git branch` để xem tên các nhánh hiện có của kho Git.
+>
+> <u>Bước 5</u>: Giải quyết xung đột nếu có và commit các thay đổi.
+>
+> 6. Giải quyết các xung đột nếu có:
+>     - Nếu có xung đột, Git sẽ thông báo và bạn cần phải chỉnh sửa các file bị xung đột.
+>     - Sau khi giải quyết xong các xung đột, thêm các file đã chỉnh sửa.
+>     - <pre>git add .</pre>
+>     - Commit các thay đổi:
+>     - <pre>git commit -m "Merged B into A"</pre>
+>
+> <u>Bước 6</u>: Merge nhánh `merge-B` vào nhánh chính của thư mục `[A]`.
+>
+> 7. Chuyển về nhánh chính (`main` hoặc `master`) của thư mục `[A]`:
+>
+>         git checkout main
+>
+> 8. Merge nhánh `merge-B` vào nhánh chính của thư mục `[A]`:
+>
+>         git merge merge-B
+>
+> <u>Bước 7</u>: Dọn dẹp (tùy chọn).
+>
+> 9. Xóa <u>remote repository</u> `B_remote` nếu không còn cần thiết:
+>
+>         git remote remove B_remote
+>
+> 10. Xóa nhánh `merge-B` nếu không còn cần thiết:
+>
+>         git branch -d merge-B
