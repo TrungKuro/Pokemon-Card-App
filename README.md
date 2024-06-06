@@ -2,7 +2,17 @@
 
 > Các tính năng:
 > - `[skeleton]` - quản lý các trang và nội dung hiển thị của chúng.
+>   - Trang Pokemon, hiển thị các thông tin Pokemon và hình ảnh. Có chức năng chọn Item Pokemon hoặc chọn ngẫu nhiên và lấy thông tin Pokemon đó về hiển thị.
+>   - Trang Data, hiển thị nội dung của data dạng Json nhận được.
 > - `[pokemon]` - lấy data **(Pokemon)** dạng Json từ `API` trang https://pokeapi.co/.
+> - `[pokemon_image]` - lấy hình dựa theo data **(Pokemon)** dạng Json từ `API` trang https://pokeapi.co/.
+
+## Hình ảnh
+
+> |<img src=".\assets\images\Demo_App_1.png" width="100%">|<img src=".\assets\images\Demo_App_2.png" width="100%">|
+> |-|-|
+> |<img src=".\assets\images\Demo_App_3.png" width="100%">|<img src=".\assets\images\Demo_App_4.png" width="100%">|
+> |<img src=".\assets\images\Demo_App_5.png" width="100%">|<img src=".\assets\images\Demo_App_6.png" width="100%">|
 
 # Nguồn tham khảo:
 
